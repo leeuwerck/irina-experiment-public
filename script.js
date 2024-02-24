@@ -1,4 +1,6 @@
-const { last, shuffle, split } = _
+const { includes, last, shuffle, split } = _
+
+const isTrial = includes(window.location.href.split("#"), "trial")
 
 const TARGET_DELAY = 1000
 const NEXT_STIMULUS_DELAY = 3000
@@ -110,18 +112,20 @@ const finishDialog = document.getElementById("finish_dialog")
 let results = []
 
 function startExperiment() {
-  window.onbeforeunload = function () {
-    return "Data will be lost if you leave the page, are you sure?"
-  }
-  const elem = document.body
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen()
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-    elem.webkitRequestFullscreen()
-  } else if (elem.msRequestFullscreen) {
-    /* IE11 */
-    elem.msRequestFullscreen()
+  if (!isTrial) {
+    window.onbeforeunload = function () {
+      return "Data will be lost if you leave the page, are you sure?"
+    }
+    const elem = document.body
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen()
+    } else if (elem.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen()
+    } else if (elem.msRequestFullscreen) {
+      /* IE11 */
+      elem.msRequestFullscreen()
+    }
   }
   document.getElementById("first_part_container").style.display = "flex"
   showNextEmotion()
@@ -144,7 +148,7 @@ function showTargetThenAnalogScale() {
 function showNextEmotion() {
   analogConfidenceScale.style.display = "none"
   saveToLocalStorage()
-  if (getCurrentStep() === IMAGE_NAMES.length) {
+  if (getCurrentStep() === IMAGE_NAMES.length || (isTrial && getCurrentStep() === 2)) {
     finishFirstPart()
     return
   }
@@ -195,7 +199,10 @@ function continueExperiment() {
 }
 
 function showNextStimuli() {
-  if (results.filter((result) => result.chosenEthnicity).length === SHUFFLED_IMAGE_PAIRS.length) {
+  if (
+    results.filter((result) => result.chosenEthnicity).length === SHUFFLED_IMAGE_PAIRS.length ||
+    (isTrial && results.length === 4)
+  ) {
     finishDialog.showModal()
     return
   }
@@ -231,6 +238,8 @@ function displayResults() {
 
   document.getElementById("results_container").style.display = "flex"
 
+  localStorage.setItem(subjectId + "_" + new Date().toISOString(), responsesToDownload)
+
   let downloadElement = document.createElement("a")
   downloadElement.setAttribute("href", "data:attachment/csv" + "," + encodeURI(responsesToDownload))
 
@@ -240,7 +249,7 @@ function displayResults() {
   document.body.appendChild(downloadElement)
 
   setTimeout(() => {
-    downloadElement.click()
+    if (!isTrial) downloadElement.click()
   }, 1000)
 }
 

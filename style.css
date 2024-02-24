@@ -1,0 +1,124 @@
+:fullscreen,
+::backdrop {
+  background-color: white;
+}
+
+html,
+body  {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+body > div {
+  width: 60%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+dialog {
+  border-radius: 0.5em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  align-self: flex-start;
+  border-bottom: 3em;
+}
+
+form > input {
+  margin-bottom: 1em;
+}
+
+#first_part_image_container {
+  box-sizing: border-box;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#emotion_choice_container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#emotion_choice_container > button {
+  width: 40%;
+  height: 3em;
+  transform: translateY(3em);
+}
+
+#first_part_target {
+  font-size: 5em;
+}
+
+#analog_confidence_scale {
+  display: flex;
+  justify-content: center;
+}
+
+#analog_confidence_scale > div {
+  aspect-ratio: 100/7;
+  border: black 1px solid;
+  min-width: 35vw;
+  display: flex;
+}
+#analog_confidence_scale > p {
+  margin-left: 1em;
+  margin-right: 1em;
+  font-size: 1.5em;
+}
+
+#analog_confidence_scale > div > span {
+  flex-grow: 1;
+}
+
+#second_part_container > span {
+  max-height: 60vh;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+#second_part_container > span > img {
+  flex: 1;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  max-height: 100%;
+  width: 0;
+  padding: 1em;
+}
+
+#second_part_container,
+#first_part_container,
+#first_part_image_container,
+#emotion_choice_container,
+#analog_confidence_scale,
+#first_part_target,
+#results_container {
+  display: none;
+}

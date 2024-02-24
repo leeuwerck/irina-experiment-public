@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Irina’s Experiment</title>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <dialog id="start_dialog" open>
+      <form method="dialog" onsubmit="startExperiment()">
+        <label for="subject_id">Subject ID:</label>
+        <input
+          type="text"
+          id="subject_id"
+          name="subject_id"
+          autocomplete="off"
+          autofocus
+          oninput="(() => { if (haveImagesFinishedLoading()) {
+        document.getElementById('start_button').disabled =
+        !document.getElementById('subject_id').value;
+      }})()"
+        />
+        <p>Start experiment?</p>
+        <button id="start_button" disabled>Start</button>
+      </form>
+    </dialog>
+    <dialog id="continue_dialog">
+      <form method="dialog" onsubmit="continueExperiment()">
+        <p>Start second part?</p>
+        <button autofocus>Start</button>
+      </form>
+    </dialog>
+    <dialog id="finish_dialog">
+      <form method="dialog" onsubmit="displayResults()">
+        <p>Finish experiment?</p>
+        <button autofocus>Finish</button>
+      </form>
+    </dialog>
+    <div id="first_part_container">
+      <div id="first_part_image_container"></div>
+      <div id="emotion_choice_container">
+        <button type="button" onclick="chooseEmotion('joie'); showTargetThenAnalogScale();">Joie / Радость</button>
+        <button type="button" onclick="chooseEmotion('colere'); showTargetThenAnalogScale();">Colère / Злость</button>
+        <button type="button" onclick="chooseEmotion('tristesse'); showTargetThenAnalogScale();">
+          Tristesse / Печаль
+        </button>
+        <button type="button" onclick="chooseEmotion('neutre'); showTargetThenAnalogScale();">
+          Neutre / Нейтральное
+        </button>
+        <button type="button" onclick="chooseEmotion('peur'); showTargetThenAnalogScale();">Peur / Страх</button>
+      </div>
+      <p id="first_part_target">+</p>
+      <div id="analog_confidence_scale">
+        <p>1</p>
+        <div>
+          <span id="confidence_meter_1" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_2" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_3" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_4" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_5" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_6" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_7" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_8" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_9" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_10" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_11" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_12" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_13" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_14" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_15" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_16" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_17" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_18" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_19" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_20" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_21" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_22" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_23" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_24" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_25" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_26" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_27" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_28" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_29" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_30" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_31" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_32" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_33" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_34" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_35" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_36" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_37" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_38" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_39" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_40" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_41" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_42" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_43" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_44" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_45" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_46" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_47" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_48" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_49" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_50" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_51" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_52" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_53" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_54" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_55" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_56" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_57" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_58" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_59" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_60" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_61" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_62" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_63" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_64" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_65" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_66" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_67" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_68" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_69" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_70" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_71" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_72" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_73" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_74" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_75" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_76" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_77" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_78" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_79" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_80" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_81" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_82" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_83" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_84" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_85" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_86" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_87" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_88" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_89" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_90" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_91" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_92" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_93" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_94" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_95" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_96" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_97" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_98" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_99" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+          <span id="confidence_meter_100" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
+        </div>
+        <p>10</p>
+      </div>
+    </div>
+    <div id="second_part_container"></div>
+    <div id="results_container">
+      <textarea id="responses" rows="4" cols="50"></textarea>
+    </div>
+    <script type="text/javascript" src="lodash.js"></script>
+    <script defer type="text/javascript" src="script.js"></script>
+  </body>
+</html>

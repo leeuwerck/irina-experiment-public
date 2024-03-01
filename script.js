@@ -237,7 +237,6 @@ function showNextStimuli(tookPause) {
   if (
     results.filter((result) => result.chosenEthnicity).length === SHUFFLED_IMAGE_PAIRS.length ||
     (isTrial && results.length === 6)
-    // (isTrial && results.length === 4)
   ) {
     finishDialog.showModal()
     return
@@ -245,9 +244,7 @@ function showNextStimuli(tookPause) {
   if (
     !tookPause &&
     results.filter((result) => result.chosenEthnicity).length > 0 &&
-    results.filter((result) => result.chosenEthnicity).length % isTrial
-      ? 3
-      : 7 === 0
+    results.filter((result) => result.chosenEthnicity).length % (isTrial ? 3 : 7) === 0
   ) {
     secondPartPauseDialog.showModal()
     return
@@ -300,7 +297,7 @@ function displayResults() {
   document.body.appendChild(downloadElement)
 
   setTimeout(() => {
-    if (!isTrial) downloadElement.click()
+    downloadElement.click()
   }, 1000)
 }
 

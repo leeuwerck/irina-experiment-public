@@ -2,7 +2,7 @@ const { includes, last, shuffle, split } = _
 
 const isTrial = includes(window.location.href.split("#"), "trial")
 
-const TARGET_DELAY = 1000
+const TARGET_DELAY = 400
 const NEXT_STIMULUS_DELAY = 3000
 
 const FIRST_IMAGES_PATH = "first_part_images"
@@ -59,18 +59,52 @@ const IMAGE_NAMES = [
   "50-BF_neutre.webp",
 ]
 
-const SECOND_IMAGES_PATH = "second_part_images"
-const SHUFFLED_IMAGE_PAIRS = [
-  // ["111_ukraine.jpg", "111_autre.png"],
-  // ["222_autre.jpg", "222_ukraine.jpg"],
-  ["1_autre.png", "1_ukraine.webp"],
-  ["2_autre.png", "2_ukraine.png"],
-  ["3_autre.jpg", "3_ukraine.jpg"],
-  ["4_autre.webp", "4_ukraine.png"],
-  ["5_autre.png", "5_ukraine.png"],
-  ["6_autre.png", "6_ukraine.png"],
-  ["7_autre.png", "7_ukraine.png"],
-].map(shuffle)
+const SECOND_IMAGES_PATH = "second_part_images_2"
+const SHUFFLED_IMAGE_PAIRS = shuffle(
+  [
+    // ["111_ukraine.jpg", "111_autre.png"],
+    // ["222_autre.jpg", "222_ukraine.jpg"],
+    ["1-autre_ar.png", "1-ukraine.webp"],
+    ["2-autre_ar.png", "2-ukraine.png"],
+    ["3-autre_m.jpg", "3-ukraine.jpg"],
+    ["4-autre_ar.webp", "4-ukraine.png"],
+    ["5-autre_ar.png", "5-ukraine.png"],
+    ["6-autre_ar.png", "6-ukraine.png"],
+    ["7-autre_ar.png", "7-ukraine.png"],
+    ["8-autre_ar.jpg", "8-ukraine.png"],
+    ["9-autre_ar.png", "9-ukraine.png"],
+    ["10-autre_ar.png", "10-ukraine.png"],
+    ["11-autre_af.png", "11-ukraine.png"],
+    ["12-autre_ar.png", "12-ukraine.png"],
+    ["13-autre_m.webp", "13-ukraine.png"],
+    ["14-autre_ar.png", "14-ukraine.png"],
+    ["15-autre_ar.png", "15-ukraine.png"],
+    ["16-autre_ar.png", "16-ukraine.png"],
+    ["17-autre_ar.png", "17-ukraine.png"],
+    ["18-autre_af.png", "18-ukraine.png"],
+    ["19-autre_as.png", "19-ukraine.png"],
+    ["20-autre_in.png", "20-ukraine.png"],
+    ["21-autre_as.png", "21-ukraine.png"],
+    ["22-autre_af.png", "22-ukraine.png"],
+    ["23-autre_af.png", "23-ukraine.png"],
+    ["24-autre_ar.png", "24-ukraine.png"],
+    ["25-autre_af.png", "25-ukraine.png"],
+    ["26-autre_ar.png", "26-ukraine.png"],
+    ["27-autre_ar.png", "27-ukraine.png"],
+    ["28-autre_as.png", "28-ukraine.png"],
+    ["29-autre_ar.png", "29-ukraine.png"],
+    ["30-autre_as.png", "30-ukraine.png"],
+    ["31-autre_as.png", "31-ukraine.png"],
+    ["32-autre_af.png", "32-ukraine.png"],
+    ["33-autre_af.png", "33-ukraine.png"],
+    ["34-autre_ar.png", "34-ukraine.png"],
+    ["35-autre_ar.png", "35-ukraine.png"],
+    ["36-autre_af.png", "36-ukraine.png"],
+    ["37-autre_ar.png", "37-ukraine.png"],
+    ["38-autre_ar.png", "38-ukraine.png"],
+    ["39-autre_ar.png", "39-ukraine.png"],
+  ].map(shuffle)
+)
 
 document.getElementById("first_part_image_container").innerHTML = IMAGE_NAMES.map(
   (url) => `<img src="${FIRST_IMAGES_PATH + "/" + url}" style="display: none"/>`
@@ -107,6 +141,7 @@ const emotionChoiceContainer = document.getElementById("emotion_choice_container
 const analogConfidenceScale = document.getElementById("analog_confidence_scale")
 const firstPartTarget = document.getElementById("first_part_target")
 const secondPartContainer = document.getElementById("second_part_container")
+const secondPartPauseDialog = document.getElementById("second_part_pause_dialog")
 const finishDialog = document.getElementById("finish_dialog")
 
 let results = []
@@ -198,12 +233,23 @@ function continueExperiment() {
   showNextStimuli()
 }
 
-function showNextStimuli() {
+function showNextStimuli(tookPause) {
   if (
     results.filter((result) => result.chosenEthnicity).length === SHUFFLED_IMAGE_PAIRS.length ||
-    (isTrial && results.length === 4)
+    (isTrial && results.length === 6)
+    // (isTrial && results.length === 4)
   ) {
     finishDialog.showModal()
+    return
+  }
+  if (
+    !tookPause &&
+    results.filter((result) => result.chosenEthnicity).length > 0 &&
+    results.filter((result) => result.chosenEthnicity).length % isTrial
+      ? 3
+      : 7 === 0
+  ) {
+    secondPartPauseDialog.showModal()
     return
   }
   for (span of document.getElementById("second_part_container").children) {
@@ -223,6 +269,11 @@ function chooseImage(name, step) {
   last(results).choiceTimestamp = window.performance.now()
   saveToLocalStorage()
   showNextStimuli()
+}
+
+function continueSecondPart() {
+  secondPartPauseDialog.close()
+  showNextStimuli(true)
 }
 
 function displayResults() {

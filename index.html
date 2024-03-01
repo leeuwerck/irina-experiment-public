@@ -31,6 +31,12 @@
         <button autofocus>Start</button>
       </form>
     </dialog>
+    <dialog id="second_part_pause_dialog">
+      <form method="dialog" onsubmit="continueSecondPart()">
+        <p>Ready for the next images?</p>
+        <button autofocus>Continue</button>
+      </form>
+    </dialog>
     <dialog id="finish_dialog">
       <form method="dialog" onsubmit="displayResults()">
         <p>Finish experiment?</p>
@@ -52,7 +58,7 @@
       </div>
       <p id="first_part_target">+</p>
       <div id="analog_confidence_scale">
-        <p>1</p>
+        <p>&nbsp;1&nbsp;</p>
         <div>
           <span id="confidence_meter_1" onclick="chooseConfidence(this.id); showNextEmotion()"></span>
           <span id="confidence_meter_2" onclick="chooseConfidence(this.id); showNextEmotion()"></span>

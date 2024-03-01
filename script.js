@@ -59,7 +59,7 @@ const IMAGE_NAMES = [
   "50-BF_neutre.webp",
 ]
 
-const SECOND_IMAGES_PATH = "second_part_images_2"
+const SECOND_IMAGES_PATH = "second_part_images_3"
 const SHUFFLED_IMAGE_PAIRS = shuffle(
   [
     // ["111_ukraine.jpg", "111_autre.png"],
@@ -103,6 +103,9 @@ const SHUFFLED_IMAGE_PAIRS = shuffle(
     ["37-autre_ar.png", "37-ukraine.png"],
     ["38-autre_ar.png", "38-ukraine.png"],
     ["39-autre_ar.png", "39-ukraine.png"],
+    ["40-autre_ar.png", "40-ukraine.png"],
+    ["41-autre_ar.png", "41-ukraine.png"],
+    ["42-autre_ar.png", "42-ukraine.png"],
   ].map(shuffle)
 )
 

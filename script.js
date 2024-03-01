@@ -3,7 +3,7 @@ const { includes, last, shuffle, split } = _
 const isTrial = includes(window.location.href.split("#"), "trial")
 
 const TARGET_DELAY = 400
-const NEXT_STIMULUS_DELAY = 3000
+const NEXT_STIMULUS_DELAY = 1000
 
 const FIRST_IMAGES_PATH = "first_part_images"
 const IMAGE_NAMES = [
@@ -292,8 +292,8 @@ function displayResults() {
   downloadElement.setAttribute("href", "data:attachment/csv" + "," + encodeURI(responsesToDownload))
 
   downloadElement.setAttribute("download", "responses_" + subjectId + ".csv")
+  downloadElement.textContent = "Download results .csv"
 
-  downloadElement.style.display = "none"
   document.body.appendChild(downloadElement)
 
   setTimeout(() => {

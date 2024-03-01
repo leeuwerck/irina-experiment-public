@@ -124,6 +124,13 @@ form > input {
   padding: 1em;
 }
 
+a {
+  background-color: white;
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: 1em;
+}
+
 #second_part_container,
 #first_part_container,
 #first_part_image_container,

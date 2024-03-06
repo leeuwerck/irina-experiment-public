@@ -6,57 +6,157 @@ const TARGET_DELAY = 400
 const NEXT_STIMULUS_DELAY = 1000
 
 const FIRST_IMAGES_PATH = "first_part_images"
-const IMAGE_NAMES = [
-  "1-BF_peur.webp",
-  "2-BF_joie.webp",
-  "3-WM_colere.webp",
-  "4-BF_tristesse.webp",
-  "5-BM_peur.webp",
-  "6-WF_neutre.webp",
-  "7-BM_neutre.webp",
-  "8-BM_tristesse.webp",
-  "9-HF_colere.webp",
+const SHUFFLED_150_IMAGE_NAMES = [
   "10-HF_colere.webp",
-  "11-BM_colere.webp",
-  "12-HM_colere.webp",
+  "2-BF_joie.webp",
   "13-BF_colere.webp",
-  "14-HF_peur.webp",
-  "15-HF_tristesse.webp",
-  "16-HM_peur.webp",
-  "17-WF_neutre.webp",
+  "9-HF_colere.webp",
+  "13-BF_colere.webp",
+  "42-WM_tristesse.webp",
   "18-WM_neutre.webp",
-  "19-WM_tristesse.webp",
-  "20-HF_neutre.webp",
-  "21-HF_peur.webp",
-  "22-WM_joie.webp",
-  "23-WM_colere.webp",
-  "24-HF_joie.webp",
-  "25-WM_peur.webp",
-  "26-WM_tristesse.webp",
-  "27-HM_tristesse.webp",
-  "28-WF_colere.webp",
-  "29-WF_tristesse.webp",
   "30-WF_peur.webp",
-  "31-WM_joie.webp",
-  "32-WM_colere.webp",
-  "33-HF_neutre.webp",
-  "34-WF_peur.webp",
+  "6-WF_neutre.webp",
+  "43-WF_joie.webp",
+  "24-HF_joie.webp",
+  "21-HF_peur.webp",
+  "16-HM_peur.webp",
+  "2-BF_joie.webp",
+  "10-HF_colere.webp",
+  "1-BF_peur.webp",
+  "7-BM_neutre.webp",
+  "18-WM_neutre.webp",
+  "46-WM_joie.webp",
+  "11-BM_colere.webp",
+  "28-WF_colere.webp",
   "35-WF_colere.webp",
+  "39-WF_joie.webp",
+  "23-WM_colere.webp",
+  "27-HM_tristesse.webp",
+  "31-WM_joie.webp",
+  "30-WF_peur.webp",
+  "41-HF_joie.webp",
+  "4-BF_tristesse.webp",
+  "49-BM_joie.webp",
+  "47-HM_joie.webp",
+  "20-HF_neutre.webp",
+  "4-BF_tristesse.webp",
+  "34-WF_peur.webp",
+  "48-WM_neutre.webp",
+  "11-BM_colere.webp",
   "36-WM_peur.webp",
-  "37-WM_peur.webp",
   "38-HF_tristesse.webp",
   "39-WF_joie.webp",
-  "40-HM_neutre.webp",
-  "41-HF_joie.webp",
-  "42-WM_tristesse.webp",
-  "43-WF_joie.webp",
-  "44-WM_neutre.webp",
-  "45-WF_tristesse.webp",
-  "46-WM_joie.webp",
-  "47-HM_joie.webp",
-  "48-WM_neutre.webp",
-  "49-BM_joie.webp",
+  "26-WM_tristesse.webp",
+  "23-WM_colere.webp",
+  "19-WM_tristesse.webp",
   "50-BF_neutre.webp",
+  "34-WF_peur.webp",
+  "6-WF_neutre.webp",
+  "33-HF_neutre.webp",
+  "41-HF_joie.webp",
+  "4-BF_tristesse.webp",
+  "37-WM_peur.webp",
+  "1-BF_peur.webp",
+  "9-HF_colere.webp",
+  "22-WM_joie.webp",
+  "17-WF_neutre.webp",
+  "40-HM_neutre.webp",
+  "7-BM_neutre.webp",
+  "15-HF_tristesse.webp",
+  "45-WF_tristesse.webp",
+  "22-WM_joie.webp",
+  "46-WM_joie.webp",
+  "20-HF_neutre.webp",
+  "5-BM_peur.webp",
+  "27-HM_tristesse.webp",
+  "5-BM_peur.webp",
+  "32-WM_colere.webp",
+  "38-HF_tristesse.webp",
+  "32-WM_colere.webp",
+  "44-WM_neutre.webp",
+  "39-WF_joie.webp",
+  "21-HF_peur.webp",
+  "3-WM_colere.webp",
+  "23-WM_colere.webp",
+  "50-BF_neutre.webp",
+  "38-HF_tristesse.webp",
+  "48-WM_neutre.webp",
+  "28-WF_colere.webp",
+  "49-BM_joie.webp",
+  "2-BF_joie.webp",
+  "15-HF_tristesse.webp",
+  "40-HM_neutre.webp",
+  "16-HM_peur.webp",
+  "9-HF_colere.webp",
+  "20-HF_neutre.webp",
+  "26-WM_tristesse.webp",
+  "8-BM_tristesse.webp",
+  "30-WF_peur.webp",
+  "14-HF_peur.webp",
+  "19-WM_tristesse.webp",
+  "28-WF_colere.webp",
+  "10-HF_colere.webp",
+  "33-HF_neutre.webp",
+  "41-HF_joie.webp",
+  "8-BM_tristesse.webp",
+  "14-HF_peur.webp",
+  "24-HF_joie.webp",
+  "16-HM_peur.webp",
+  "45-WF_tristesse.webp",
+  "44-WM_neutre.webp",
+  "13-BF_colere.webp",
+  "43-WF_joie.webp",
+  "7-BM_neutre.webp",
+  "1-BF_peur.webp",
+  "25-WM_peur.webp",
+  "12-HM_colere.webp",
+  "29-WF_tristesse.webp",
+  "45-WF_tristesse.webp",
+  "19-WM_tristesse.webp",
+  "5-BM_peur.webp",
+  "29-WF_tristesse.webp",
+  "18-WM_neutre.webp",
+  "47-HM_joie.webp",
+  "8-BM_tristesse.webp",
+  "12-HM_colere.webp",
+  "22-WM_joie.webp",
+  "50-BF_neutre.webp",
+  "46-WM_joie.webp",
+  "12-HM_colere.webp",
+  "25-WM_peur.webp",
+  "27-HM_tristesse.webp",
+  "17-WF_neutre.webp",
+  "3-WM_colere.webp",
+  "35-WF_colere.webp",
+  "15-HF_tristesse.webp",
+  "34-WF_peur.webp",
+  "21-HF_peur.webp",
+  "24-HF_joie.webp",
+  "25-WM_peur.webp",
+  "31-WM_joie.webp",
+  "36-WM_peur.webp",
+  "37-WM_peur.webp",
+  "42-WM_tristesse.webp",
+  "35-WF_colere.webp",
+  "43-WF_joie.webp",
+  "17-WF_neutre.webp",
+  "42-WM_tristesse.webp",
+  "48-WM_neutre.webp",
+  "29-WF_tristesse.webp",
+  "33-HF_neutre.webp",
+  "6-WF_neutre.webp",
+  "44-WM_neutre.webp",
+  "11-BM_colere.webp",
+  "37-WM_peur.webp",
+  "31-WM_joie.webp",
+  "36-WM_peur.webp",
+  "40-HM_neutre.webp",
+  "26-WM_tristesse.webp",
+  "47-HM_joie.webp",
+  "3-WM_colere.webp",
+  "49-BM_joie.webp",
+  "14-HF_peur.webp",
+  "32-WM_colere.webp",
 ]
 
 const SECOND_IMAGES_PATH = "second_part_images_3"
@@ -109,7 +209,7 @@ const SHUFFLED_IMAGE_PAIRS = shuffle(
   ].map(shuffle)
 )
 
-document.getElementById("first_part_image_container").innerHTML = IMAGE_NAMES.map(
+document.getElementById("first_part_image_container").innerHTML = SHUFFLED_150_IMAGE_NAMES.map(
   (url) => `<img src="${FIRST_IMAGES_PATH + "/" + url}" style="display: none"/>`
 ).join("")
 
@@ -143,6 +243,7 @@ const firstPartImageContainer = document.getElementById("first_part_image_contai
 const emotionChoiceContainer = document.getElementById("emotion_choice_container")
 const analogConfidenceScale = document.getElementById("analog_confidence_scale")
 const firstPartTarget = document.getElementById("first_part_target")
+const firstPartPauseDialog = document.getElementById("first_part_pause_dialog")
 const secondPartContainer = document.getElementById("second_part_container")
 const secondPartPauseDialog = document.getElementById("second_part_pause_dialog")
 const finishDialog = document.getElementById("finish_dialog")
@@ -183,13 +284,17 @@ function showTargetThenAnalogScale() {
   }, TARGET_DELAY)
 }
 
-function showNextEmotion() {
-  analogConfidenceScale.style.display = "none"
-  saveToLocalStorage()
-  if (getCurrentStep() === IMAGE_NAMES.length || (isTrial && getCurrentStep() === 2)) {
+function showNextEmotion(tookPause) {
+  if (getCurrentStep() === SHUFFLED_150_IMAGE_NAMES.length || (isTrial && getCurrentStep() === 4)) {
     finishFirstPart()
     return
   }
+
+  if (!tookPause && (getCurrentStep() === (isTrial ? 2 : 50) || getCurrentStep() === 100)) {
+    firstPartPauseDialog.showModal()
+    return
+  }
+
   setTimeout(() => {
     firstPartImageContainer.style.display = "flex"
     emotionChoiceContainer.style.display = "flex"
@@ -198,7 +303,7 @@ function showNextEmotion() {
       ...results,
       {
         imageDisplayTimestamp: window.performance.now(),
-        imageName: IMAGE_NAMES[getCurrentStep()],
+        imageName: SHUFFLED_150_IMAGE_NAMES[getCurrentStep()],
         experimentPart: 1,
       },
     ]
@@ -211,17 +316,25 @@ function saveToLocalStorage() {
 
 function chooseEmotion(emotion) {
   last(results).chosenEmotion = emotion
-  last(results).wasEmotionCorrectlyIdentified = IMAGE_NAMES[getCurrentStep() - 1].includes(emotion)
+  last(results).wasEmotionCorrectlyIdentified = SHUFFLED_150_IMAGE_NAMES[getCurrentStep() - 1].includes(emotion)
 }
 
 function chooseConfidence(elementId) {
   last(results).choiceTimestamp = window.performance.now()
   const confidenceLevel = last(split(elementId, "_"))
   last(results).confidenceLevel = confidenceLevel
+  analogConfidenceScale.style.display = "none"
+  saveToLocalStorage()
+  showNextEmotion()
 }
 
 function getCurrentStep() {
   return results.length
+}
+
+function continueFirstPart() {
+  firstPartPauseDialog.close()
+  showNextEmotion(true)
 }
 
 function finishFirstPart() {
@@ -239,7 +352,7 @@ function continueExperiment() {
 function showNextStimuli(tookPause) {
   if (
     results.filter((result) => result.chosenEthnicity).length === SHUFFLED_IMAGE_PAIRS.length ||
-    (isTrial && results.length === 6)
+    (isTrial && results.length === 8)
   ) {
     finishDialog.showModal()
     return

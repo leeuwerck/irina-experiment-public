@@ -310,10 +310,6 @@ function showNextEmotion(tookPause) {
   }, NEXT_STIMULUS_DELAY)
 }
 
-function saveToLocalStorage() {
-  localStorage.setItem(new Date().toISOString(), JSON.stringify(results))
-}
-
 function chooseEmotion(emotion) {
   last(results).chosenEmotion = emotion
   last(results).wasEmotionCorrectlyIdentified = SHUFFLED_150_IMAGE_NAMES[getCurrentStep() - 1].includes(emotion)
@@ -324,7 +320,6 @@ function chooseConfidence(elementId) {
   const confidenceLevel = last(split(elementId, "_"))
   last(results).confidenceLevel = confidenceLevel
   analogConfidenceScale.style.display = "none"
-  saveToLocalStorage()
   showNextEmotion()
 }
 
@@ -380,7 +375,6 @@ function showNextStimuli(tookPause) {
 function chooseImage(name, step) {
   last(results).chosenEthnicity = name.includes("ukraine") ? "ukraine" : "autre"
   last(results).choiceTimestamp = window.performance.now()
-  saveToLocalStorage()
   showNextStimuli()
 }
 
